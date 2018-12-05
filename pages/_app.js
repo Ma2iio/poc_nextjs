@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import App, { Container } from 'next/app'
 import { Provider } from 'mobx-react'
 import { withMobx } from '../hoc'
@@ -6,9 +6,11 @@ import { I18nextProvider } from 'react-i18next'
 import startI18n from '../utils/i18n'
 import { getTranslation } from '../utils/translationHelpers'
 
-@withMobx
-export default class _App extends App {
-    static async getInitialProps({ res }) {
+
+export default
+@withMobx 
+class _App extends App {
+    static async getInitialProps() {
         const translations = await getTranslation(
             'th',
             ['common'],
