@@ -28,6 +28,8 @@
         "semi": ["error", "never"],
         "indent": ["error", 4],
         "react/display-name": [0],
-        "space-before-function-paren": ["error"]
+        "space-before-function-paren": ["error"],
+        "implicit-arrow-linebreak": [0],
+        "arrow-body-style": [0]
     }
 }

@@ -9,6 +9,7 @@ const enhance = compose(
 )
 
 export default enhance(props => <div>
+    {console.log(props)}
     {`${props.t('hello')} `}
     Login
 </div>)

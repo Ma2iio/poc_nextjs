@@ -22,6 +22,7 @@ class extends App {
     constructor(props) {
         super(props)
         const { router: { query: { lang = 'en' } } } = props
+        console.log(lang)
         this.i18n = startI18n(props.translations, lang)
     }
 

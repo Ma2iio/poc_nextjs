@@ -8,7 +8,9 @@ const getTranslation = async (lang, files, baseUrl) => {
     for (const file of files) {
         const response = await fetch(`${baseUrl}${lang}/${file}.json`)
         translation[file] = await response.json()
+        console.log()
     }
+    return { [lang]: translation }
 }
 
 export default getTranslation
