@@ -1,45 +1,43 @@
-import React from 'react'
-import {initializeStore} from '../store'
+import React, { Component } from 'react'
+import initializeStore from '../store'
 
 const isServer = typeof window === 'undefined'
-const __NEXT_MOBX_STORE__ = '__NEXT_MOBX_STORE__'
+const NEXTMOBXSTORE = '__NEXT_MOBX_STORE__'
 
 function getOrCreateStore(initialState) {
-  if (isServer) {
-    return initializeStore(initialState)
-  }
+    if (isServer) {
+        return initializeStore(initialState)
+    }
 
-  if (!window[__NEXT_MOBX_STORE__]) {
-    window[__NEXT_MOBX_STORE__] = initializeStore(initialState)
-  }
-  return window[__NEXT_MOBX_STORE__]
+    if (!window[NEXTMOBXSTORE]) {
+        window[NEXTMOBXSTORE] = initializeStore(initialState)
+    }
+    return window[NEXTMOBXSTORE]
 }
 
-export default (App) => {
-  return class AppWithMobx extends React.Component {
-    static async getInitialProps (appContext) {
-      const mobxStore = getOrCreateStore()
+export default App => class extends Component {
+    static async getInitialProps(context) {
+        const mobxStore = getOrCreateStore()
+        const appContext = context
+        appContext.ctx.mobxStore = mobxStore
 
-      appContext.ctx.mobxStore = mobxStore
+        let appProps = {}
+        if (typeof App.getInitialProps === 'function') {
+            appProps = await App.getInitialProps.call(App, appContext)
+        }
 
-      let appProps = {}
-      if (typeof App.getInitialProps === 'function') {
-        appProps = await App.getInitialProps.call(App, appContext)
-      }
-
-      return {
-        ...appProps,
-        initialMobxState: mobxStore
-      }
+        return {
+            ...appProps,
+            initialMobxState: mobxStore,
+        }
     }
 
-    constructor (props) {
-      super(props)
-      this.mobxStore = getOrCreateStore(props.initialMobxState)
+    constructor(props) {
+        super(props)
+        this.mobxStore = getOrCreateStore(props.initialMobxState)
     }
 
-    render () {
-      return <App {...this.props} mobxStore={this.mobxStore} />
+    render() {
+        return <App {...this.props} mobxStore={this.mobxStore} />
     }
-  }
 }

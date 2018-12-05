@@ -1,10 +1,14 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+
 import 'isomorphic-unfetch'
 
-export async function getTranslation (lang, files, baseUrl) {
-    let translation = {}
-    for (let file of files) {
-      const response = await fetch(`${baseUrl}${lang}/${file}.json`)
-      translation[file] = await response.json()
+const getTranslation = async (lang, files, baseUrl) => {
+    const translation = {}
+    for (const file of files) {
+        const response = await fetch(`${baseUrl}${lang}/${file}.json`)
+        translation[file] = await response.json()
     }
-    return { [lang]: translation }
-  }
+}
+
+export default getTranslation

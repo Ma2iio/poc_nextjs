@@ -6,7 +6,7 @@ const startI18n = (files, lang) => i18n.init({
     resources: files,
     ns: ['common'],
     defaultNS: 'common',
-    debug: false
-  })
-  
-  export default startI18n
+    debug: false,
+})
+
+export default startI18n

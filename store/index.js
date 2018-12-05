@@ -8,16 +8,17 @@ class Store {
     constructor(isServer, lastUpdate) {
         this.lastUpdate = lastUpdate
     }
-
 }
 
-export function initializeStore(isServer, lastUpdate = Date.now()) {
+const initializeStore = (isServer, lastUpdate = Date.now()) => {
     if (isServer) {
         return new Store(isServer, lastUpdate)
-    } else {
-        if (store === null) {
-            store = new Store(isServer, lastUpdate)
-        }
-        return store
     }
+
+    if (store === null) {
+        store = new Store(isServer, lastUpdate)
+    }
+    return store
 }
+
+export default initializeStore
