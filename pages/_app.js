@@ -6,6 +6,7 @@ import getTranslation from '../utils/translationHelpers'
 import { withMobx } from '../hoc'
 import startI18n from '../utils/i18n'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default
 @withMobx
