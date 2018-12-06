@@ -3,4 +3,4 @@ import { compose } from 'recompose'
 
 const enhance = compose()
 
-export default enhance(props => <div>Home</div>)
+export default enhance(() => <div>Home</div>)
