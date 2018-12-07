@@ -4,7 +4,6 @@ import { withNamespaces } from 'react-i18next'
 import { inject } from 'mobx-react'
 
 import { page } from '../../hoc'
-import Modal from '../../components/Modal'
 
 const enhance = compose(
     page,
@@ -16,6 +15,7 @@ export default enhance(props =>
     <div>
         {/* {`${props.t('hello')} `} */}
         Login
+        <span className="fas fa-stroopwafel" />
         <button onClick={() => props.store.setVisible(!props.store.visible)}> Click1 </button>
-        <Modal />
+        <div className="h1">Example heading <span className="badge badge-secondary">New</span></div>
     </div>)

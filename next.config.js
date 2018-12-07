@@ -12,6 +12,10 @@ module.exports = withCSS({
                 },
             })
         }
+        config.module.rules.push({
+            test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|json|xml|ico)$/,
+            loader: 'file-loader',
+        })
         return config
     },
 })
