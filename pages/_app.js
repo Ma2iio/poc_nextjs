@@ -6,6 +6,7 @@ import { I18nextProvider } from 'react-i18next'
 import getTranslation from '../utils/translationHelpers'
 import { withMobx } from '../hoc'
 import startI18n from '../utils/i18n'
+// import { Firebase } from '../utils/client'
 
 export default
 @withMobx

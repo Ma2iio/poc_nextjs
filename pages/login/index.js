@@ -18,10 +18,18 @@ const enhance = compose(
                 [key]: value,
             }))
         },
-        handleLogin: props => async () => {
+        handleLogIn: props => async () => {
             try {
-                await props.store.login(props.userInfo)
+                await props.store.logIn(props.userInfo)
                 Router.push('/')
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        handleLogOut: props => async () => {
+            try {
+                await props.store.logOut()
+                Router.push('/login')
             } catch (error) {
                 console.log(error)
             }
@@ -91,7 +99,8 @@ export default enhance(props =>
                                     <a className="small" href="signup.html">Signup</a>
                                 </div>
                                 <div className="col-6 text-right">
-                                    <button className="btn btn-primary transition-3d-hover" onClick={props.handleLogin}>Login</button>
+                                    <button className="btn btn-primary transition-3d-hover" onClick={props.handleLogIn}>Log In</button>
+                                    <button className="btn btn-primary transition-3d-hover" onClick={props.handleLogOut}>Log out</button>
                                 </div>
                             </div>
                             {/* End Button */}

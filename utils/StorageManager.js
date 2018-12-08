@@ -6,26 +6,20 @@ const session = engine.createStore([sessionStorage])
 
 const setItem = key => (value, sessionOnly) => {
     const isValue = !!value
-    console.log('value', value)
-    console.log('isValue', isValue)
     if (!isValue) { // Check value when set null to remove value
         if (store.get(key)) {
-            console.log('StorageService: Remove localStorage:', key)
-            store.remove(key)
+            return store.remove(key)
         }
         if (session.get(key)) {
-            console.log('StorageService: Remove sessionStorage:', key)
-            session.remove(key)
+            return session.remove(key)
         }
-    } else {
-        let result
-        if (sessionOnly) {
-            result = session.set(key, { value })
-        } else {
-            result = store.set(key, { value })
-        }
-        console.log(`StorageService: set '${key}'`, result)
+        return {}
     }
+
+    if (sessionOnly) {
+        return session.set(key, { value })
+    }
+    return store.set(key, { value })
 }
 const getItem = key => () => {
     let value
@@ -33,7 +27,6 @@ const getItem = key => () => {
     if (!value) {
         value = store.get(key) && store.get(key).value
     }
-    console.log(`StorageService: get '${key}'`, value)
     return value
 }
 

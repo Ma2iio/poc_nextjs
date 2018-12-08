@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { compose, lifecycle } from 'recompose'
 import Link from 'next/link'
+import { inject, observer } from 'mobx-react'
+import { toJS } from 'mobx'
 
 const enhance = compose(
+    inject('store'),
     lifecycle({
         componentDidMount() {
             $(window).on('load', () => {
@@ -20,11 +23,14 @@ const enhance = compose(
             })
         },
     }),
+    observer,
 )
 
 
-export default enhance(() =>
-    <header id="header" className="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md" data-header-fix-moment={500} data-header-fix-effect="slide">
+export default enhance((props) => {
+    const { userInfo } = toJS(props.store)
+    console.log(userInfo)
+    return <header id="header" className="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md" data-header-fix-moment={500} data-header-fix-effect="slide">
         {/* Search */}
         <div id="searchPushTop" className="u-search-push-top">
             <div className="container position-relative">
@@ -190,20 +196,32 @@ export default enhance(() =>
                                     </a>
                                 </Link>
                             </li>
-                            <li className="nav-item u-header__nav-last-item">
-                                <Link href="/login">
-                                    <a className="btn btn-sm btn-primary transition-3d-hover">
-                                        login
-                                    </a>
-                                </Link>
-                            </li>
-                            <li className="nav-item u-header__nav-last-item">
-                                <Link href="/login">
-                                    <a className="btn btn-sm btn-primary transition-3d-hover">
-                                        Register
-                                    </a>
-                                </Link>
-                            </li>
+                            {
+                                userInfo
+                                    ? <li className="nav-item u-header__nav-last-item">
+                                        <Link href="/login">
+                                            <a>
+                                                {userInfo.email}
+                                            </a>
+                                        </Link>
+                                    </li>
+                                    : <Fragment>
+                                        <li className="nav-item u-header__nav-last-item">
+                                            <Link href="/login">
+                                                <a className="btn btn-sm btn-primary transition-3d-hover">
+                                                    login
+                                                </a>
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item u-header__nav-last-item">
+                                            <Link href="/login">
+                                                <a className="btn btn-sm btn-primary transition-3d-hover">
+                                                    Register
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    </Fragment>
+                            }
                         </ul>
                     </div>
                     {/* End Navigation */}
@@ -211,4 +229,5 @@ export default enhance(() =>
                 {/* End Nav */}
             </div>
         </div>
-    </header>)
+    </header>
+})
