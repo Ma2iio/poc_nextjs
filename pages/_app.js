@@ -7,8 +7,6 @@ import getTranslation from '../utils/translationHelpers'
 import { withMobx } from '../hoc'
 import startI18n from '../utils/i18n'
 
-// import '../theme/css/theme.css'
-
 export default
 @withMobx
 class extends App {
@@ -46,12 +44,12 @@ class extends App {
                     <link rel="stylesheet" href="/static/theme/vendor/slick-carousel/slick/slick.css" />
                     <link rel="stylesheet" href="/static/theme/css/theme.css" />
 
-                    <script src="/static/theme/vendor/jquery/dist/jquery.min.js"></script>
-                    <script src="/static/theme/vendor/popper.js/dist/umd/popper.min.js"></script>
-                    <script src="/static/theme/vendor/bootstrap/bootstrap.min.js"></script>
-                    <script src="/static/theme/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+                    <script src="/static/theme/vendor/jquery/dist/jquery.min.js" />
+                    <script src="/static/theme/vendor/popper.js/dist/umd/popper.min.js" />
+                    <script src="/static/theme/vendor/bootstrap/bootstrap.min.js" />
+                    <script src="/static/theme/vendor/hs-megamenu/src/hs.megamenu.js" />
 
-                    <script src="/static/theme/js/hs.core.js"></script>
+                    <script src="/static/theme/js/hs.core.js" />
                 </Head>
                 <Provider store={mobxStore}>
                     <I18nextProvider i18n={i18n}>
