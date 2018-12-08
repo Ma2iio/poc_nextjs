@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es6": true,
-        "commonjs": true
+        "commonjs": true,
+        "jquery": true
     },
     "extends": [
         "airbnb-base",
@@ -25,11 +26,27 @@
             2
         ],
         "no-console": 0,
-        "semi": ["error", "never"],
-        "indent": ["error", 4],
-        "react/display-name": [0],
-        "space-before-function-paren": ["error"],
-        "implicit-arrow-linebreak": [0],
-        "arrow-body-style": [0]
+        "semi": [
+            "error",
+            "never"
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "react/display-name": [
+            0
+        ],
+        "space-before-function-paren": [
+            "error"
+        ],
+        "implicit-arrow-linebreak": [
+            0
+        ],
+        "arrow-body-style": [
+            0
+        ],
+        "import/named" : 0,
+        "import/no-named-as-default" : 0
     }
 }

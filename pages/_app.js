@@ -7,8 +7,7 @@ import getTranslation from '../utils/translationHelpers'
 import { withMobx } from '../hoc'
 import startI18n from '../utils/i18n'
 
-import '../theme/css/theme.css'
-import '../theme/vendor/font-awesome/css/fontawesome-all.min.css'
+// import '../theme/css/theme.css'
 
 export default
 @withMobx
@@ -35,8 +34,24 @@ class extends App {
         return (
             <Container>
                 <Head>
-                    <title>My page title</title>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                    <title>Trex</title>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+                    <link rel="stylesheet" href="/static/theme/vendor/font-awesome/css/fontawesome-all.min.css" />
+                    <link rel="stylesheet" href="/static/theme/vendor/animate.css/animate.min.css" />
+                    <link rel="stylesheet" href="/static/theme/vendor/hs-megamenu/src/hs.megamenu.css" />
+                    <link rel="stylesheet" href="/static/theme/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" />
+                    <link rel="stylesheet" href="/static/theme/vendor/fancybox/jquery.fancybox.css" />
+                    <link rel="stylesheet" href="/static/theme/vendor/slick-carousel/slick/slick.css" />
+                    <link rel="stylesheet" href="/static/theme/css/theme.css" />
+
+                    <script src="/static/theme/vendor/jquery/dist/jquery.min.js"></script>
+                    <script src="/static/theme/vendor/popper.js/dist/umd/popper.min.js"></script>
+                    <script src="/static/theme/vendor/bootstrap/bootstrap.min.js"></script>
+                    <script src="/static/theme/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+
+                    <script src="/static/theme/js/hs.core.js"></script>
                 </Head>
                 <Provider store={mobxStore}>
                     <I18nextProvider i18n={i18n}>
